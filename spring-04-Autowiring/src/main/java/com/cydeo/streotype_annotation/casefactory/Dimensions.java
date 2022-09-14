@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Setter
 //@AllArgsConstructor
 @Component
-public class Dimensions {
+public class Dimensions {  // ask this question why we remove AllArgsConstructor
 
     private int width;
     private int height;
