@@ -13,5 +13,22 @@ public class HomeController {
         return "home.html";
     }
 
+    @RequestMapping
+    public String getHomePage2(){  // default will return
+        return "home.html";
+    }
+
+    @RequestMapping("/ozzy")
+    public String getHomePage3(){
+        return "home.html";
+    }
+
+    @RequestMapping({"/apple", "/orange"})
+    public String getHomePage4(){  // which end point? www.amazon.com/login
+        return "home.html";
+    }
+
+
+
 
 }
