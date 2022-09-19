@@ -13,7 +13,7 @@ public class CommentService {
    private final CommentNotificationProxy commentNotificationProxy;
    private final CommentRepository commentRepository;
 
-    public CommentService(CommentNotificationProxy commentNotificationProxy, @Qualifier("emailCommentNotificationProxy") CommentRepository commentRepository) {
+    public CommentService(@Qualifier("emailCommentNotificationProxy")CommentNotificationProxy commentNotificationProxy,  CommentRepository commentRepository) {
         this.commentNotificationProxy = commentNotificationProxy;
         this.commentRepository = commentRepository;
     }
