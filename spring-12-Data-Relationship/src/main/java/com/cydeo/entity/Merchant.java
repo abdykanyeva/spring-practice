@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name =  "merchants")
@@ -17,17 +18,24 @@ public class Merchant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String code;
-    private BigDecimal commissionRate;
     private String name;
-    private Integer payoutDelayCount;
-    private BigDecimal transactionFee;
+    private String code;
 
-    public Merchant(String code, BigDecimal commissionRate, String name, Integer payoutDelayCount, BigDecimal transactionFee) {
-        this.code = code;
-        this.commissionRate = commissionRate;
+    private BigDecimal transactionFee;
+    private BigDecimal commissionRate;
+
+    private Integer payoutDelayCount;
+
+
+    @OneToMany(mappedBy = "merchant")  // in OneToMany relationship, ownership belongs to many side
+    private List<Payment> paymentList;
+
+
+    public Merchant(String name, String code, BigDecimal transactionFee, BigDecimal commissionRate, Integer payoutDelayCount) {
         this.name = name;
-        this.payoutDelayCount = payoutDelayCount;
+        this.code = code;
         this.transactionFee = transactionFee;
+        this.commissionRate = commissionRate;
+        this.payoutDelayCount = payoutDelayCount;
     }
 }
