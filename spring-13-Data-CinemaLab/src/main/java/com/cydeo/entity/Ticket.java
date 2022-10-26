@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Ticket extends BaseEntity{
 
-    private Integer setNumber;
+    private Integer seatNumber;
     private Integer rowNumber;
     @Column(columnDefinition = "DATE")
     private LocalDateTime dateTime;
