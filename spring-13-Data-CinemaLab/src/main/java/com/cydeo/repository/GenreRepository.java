@@ -14,13 +14,15 @@ public interface GenreRepository extends JpaRepository<Genre, Long> {
 
     //Write a JPQL query that return all genres
 
-    @Query("SELECT e FROM Genre e WHERE e.id = ?1")
+    @Query("SELECT e FROM Genre e ")
     List<Genre> retrieveAllGenres(String genres);
 
 
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query that returns genres by containing name
+
+
 
 
 }

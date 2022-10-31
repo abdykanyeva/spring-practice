@@ -3,10 +3,13 @@ package com.cydeo.repository;
 import com.cydeo.entity.Cinema;
 import com.cydeo.entity.Movie;
 import com.cydeo.entity.MovieCinema;
+import net.bytebuddy.asm.Advice;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.xml.stream.Location;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -49,12 +52,22 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema, Long> 
     //Write a JPQL query to list all movie cinemas with higher than a specific date
 
 
+    @Query("SELECT d FROM MovieCinema d WHERE d.dateTime > ?1")
+    List<Movie> allMovieWithHigherThanSpecificDate(LocalDate date);
+
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query to count all movie cinemas by cinema id
 
+    @Query(value = "SELECT COUNT (cinema_id) FROM movie_cinema ", nativeQuery = true)
+    int countByCinemaId();
+
 
     //Write a native query that returns all movie cinemas by location name
+
+
+    @Query(value = "SELECT * FROM movie_cinema WHERE cinema_id = ?1", nativeQuery = true)
+    List<MovieCinema> movieCinemaByName(String name);
 
 
 }
