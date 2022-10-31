@@ -43,7 +43,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     //Write a JPQL query that returns all accounts
 
 
-    @Query("SELECT e FROM Account e WHERE e.user = ?1")
+    @Query("SELECT e FROM Account e")
     List<Account> retrieveAllAccount(String account);
 
 
@@ -67,6 +67,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> retrieveAllAccountsLowerThanValue(int value);
 
     //Write a native query to read all accounts that a specific value can be containable in the name, address, country, state city
+
+    @Query(value = "SELECT * FROM account_details IN (?1)", nativeQuery = true)
+    List<Account> readAllAccountsWithASpecificValue(List<Account> account);
 
 
     //Write a native query to read all accounts with an age higher than a specific value

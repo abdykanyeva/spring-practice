@@ -19,7 +19,7 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
 
     //Write a derived query to read sorted the top 3 cinemas that contains a specific sponsored name
 
-    List<Cinema> findDistinctTopBy3AndSponsoredName(String name);
+    List<Cinema> findDistinctTop3BySponsoredName(String name);
 
     //Write a derived query to list all cinemas in a specific country
 
@@ -28,7 +28,7 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
 
     //Write a derived query to list all cinemas with a specific name or sponsored name
 
-    List<Cinema> findByNameOrderBySponsoredName(String name);
+    List<Cinema> findByNameOrSponsoredName(String name, String sponsoredName);
 
     // ------------------- JPQL QUERIES ------------------- //
 
@@ -52,8 +52,14 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
 
     //Write a native query to sort all cinemas by name
 
+    @Query(value="SELECT * FROM cinema ORDER BY name", nativeQuery = true)
+    List<Cinema> sortAllByName(String name);
+
 
     //Write a native query to distinct all cinemas by sponsored name
 
+
+    @Query(value="SELECT DISTINCT sponsored_name FROM cinema", nativeQuery = true)
+    List<Cinema> distinctAllCinemas(String name);
 
 }
