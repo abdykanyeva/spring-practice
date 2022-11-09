@@ -29,6 +29,19 @@ public class DataGenerator implements CommandLineRunner {
         carRepository.save(c2);
         carRepository.save(c3);
 
+        // I am going to love you one day, thymeleaf
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
