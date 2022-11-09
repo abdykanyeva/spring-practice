@@ -26,8 +26,15 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     private Status paymentStatus;
 
-    @OneToOne
+    //@OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private PaymentDetail paymentDetail;
+
+
+    @ManyToOne
+    private Merchant merchant;
+
+
 
 
     public Payment(LocalDate created_date, BigDecimal amount, Status paymentStatus) {
