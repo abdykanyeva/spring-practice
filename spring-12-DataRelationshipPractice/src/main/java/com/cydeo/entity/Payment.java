@@ -26,6 +26,9 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     private Status paymentStatus;
 
+    @OneToOne
+    private PaymentDetail paymentDetail;
+
 
     public Payment(LocalDate created_date, BigDecimal amount, Status paymentStatus) {
         this.created_date = created_date;
