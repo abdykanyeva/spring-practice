@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("/courses/api.v1")
 
 public class CourseController {
 
@@ -21,15 +21,14 @@ public class CourseController {
     @GetMapping
     public List<CourseDTO> getAllCourses(){
         return courseService.getCourses();
-
     }
 
 
     @GetMapping("{id}")
     public CourseDTO getCourseById(@PathVariable ("id") long courseId){
-
         return courseService.getCourseById(courseId);
     }
+
 
     @GetMapping("category/{name}")
     public List<CourseDTO> getCourseByCategory(@PathVariable("name") String category){
