@@ -1,6 +1,7 @@
 package com.cydeo.dto;
 
 import com.cydeo.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -8,6 +9,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDTO {
 
     private String email;
@@ -17,7 +19,7 @@ public class UserDTO {
     private String username;
     private UserRole role;
 
-    @JsonManagedReference    // this field is going to be serialized
+    @JsonManagedReference    // this field is going to be serialized, will be available in request and response
     private AccountDTO account;
 
 }

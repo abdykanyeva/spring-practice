@@ -11,7 +11,7 @@ import lombok.*;
 @JsonIgnoreProperties(value = {"address", "country", "state"}, ignoreUnknown = true)
 public class AccountDTO {
 
-    @JsonIgnore
+    @JsonIgnore  // it will not be available in request and response as well
     private String name;
     private String address;
     private String country;
@@ -20,7 +20,7 @@ public class AccountDTO {
     private Integer age;
     private String postalCode;
 
-    @JsonBackReference     // this field is not going to be serialized
+    @JsonBackReference     // this field is not going to be serialized, will be available in request but not in response
     private UserDTO user;
 
 }
