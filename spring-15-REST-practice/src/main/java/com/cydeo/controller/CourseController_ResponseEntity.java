@@ -28,4 +28,26 @@ public class CourseController_ResponseEntity {
                 .header("Operation", "Get list")
                 .body(courseService.getCourses());
     }
+
+
+    @GetMapping("{id}")
+    public ResponseEntity<CourseDTO> getCourseById(@PathVariable("id") Long id){
+
+        return ResponseEntity.ok(courseService.getCourseById(id));
+    }
+
+
+    @GetMapping("category/{name}")
+    public ResponseEntity<List<CourseDTO>> getCourseByCategory(@PathVariable("name") String category){
+        return ResponseEntity.ok(courseService.getCoursesByCategory(category));
+    }
+
+
+    @PostMapping
+    public ResponseEntity<CourseDTO> createCourse(@RequestBody CourseDTO courseDTO){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .header("Operation", "Create")
+                .body(courseService.createCourse(courseDTO));
+    }
 }
