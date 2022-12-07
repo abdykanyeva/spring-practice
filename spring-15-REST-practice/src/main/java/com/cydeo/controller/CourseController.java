@@ -1,16 +1,15 @@
 package com.cydeo.controller;
 
-
 import com.cydeo.dto.CourseDTO;
 import com.cydeo.service.CourseService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController   // @Controller + @ResponseBody
-@RequestMapping("/courses/api.v1")
-
+@RestController //@Controller + @ResponseBody
+@RequestMapping("/courses/api/v1")
 public class CourseController {
+
 
     private final CourseService courseService;
 
@@ -18,18 +17,17 @@ public class CourseController {
         this.courseService = courseService;
     }
 
+
     @GetMapping
     public List<CourseDTO> getAllCourses(){
-
-        CourseDTO courseDTO = CourseDTO.builder().name("name").category("category").rating(5).build();
 
         return courseService.getCourses();
     }
 
 
     @GetMapping("{id}")
-    public CourseDTO getCourseById(@PathVariable ("id") long courseId){
-        return courseService.getCourseById(courseId);
+    public CourseDTO getCourseById(@PathVariable ("id") Long id){
+        return courseService.getCourseById(id);
     }
 
 
@@ -39,21 +37,25 @@ public class CourseController {
         return courseService.getCoursesByCategory(category);
     }
 
-
     @PostMapping
-    public CourseDTO createCourse(@RequestBody CourseDTO course){
-        return courseService.createCourse(course);
+    public CourseDTO createCourse(@RequestBody CourseDTO courseDTO){
+        return courseService.createCourse(courseDTO);
     }
 
     @PutMapping("{id}")
-    public void updateCourse(@PathVariable("id") long courseId, @RequestBody CourseDTO course){
-
-        courseService.updateCourse(courseId, course);
+    public void updateCourse(@PathVariable("id") Long courseId, @RequestBody CourseDTO course){
+        courseService.updateCourse(courseId,course );
     }
-
 
     @DeleteMapping("{id}")
-    public void deleteCourseById(@PathVariable("id") long courseId){
+    public void deleteCourseById(@PathVariable("id") Long courseId){
         courseService.deleteCourseById(courseId);
     }
+
+
+
+
+
+
+
 }
