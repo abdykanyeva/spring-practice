@@ -46,10 +46,10 @@ public class AddressServiceImpl implements AddressService {
 
 
         AddressDTO addressDTO = mapperUtil.convert(foundAddress, new AddressDTO());
+        addressDTO.setCurrentTemperature(getCurrentWeather(addressDTO.getCity())
+                .getCurrent().getTemperature());
 
-        addressDTO.setCurrentTemperature(getCurrentWeather(addressDTO.getCity()).getCurrent().getTemperature());
-
-        return mapperUtil.convert(foundAddress, new AddressDTO());
+        return addressDTO;
     }
 
     @Override
